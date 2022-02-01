@@ -1,0 +1,7 @@
+<div class="button-container">
+	<div class="icon-container"></div>
+	<button (click)="handlerClick()">
+		<span *ngIf="this.icon !== 'default'"><app-icon name="shoeprint" size="md"></app-icon></span
+		>{{ this.text }}
+	</button>
+</div>

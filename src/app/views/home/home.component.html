@@ -1,0 +1,13 @@
+<main class="home-container">
+    <div class="icon"><app-icon name="mouse" size="sm"></app-icon></div>
+	<h2>Create new player</h2>
+	<form [formGroup]="userForm">
+		<div class="row-control">
+			<app-input label="Name" formControlName="userName" placeholder="Please enter your name here">
+			</app-input>
+		</div>
+		<div class="row-control">
+			<app-button text="JOIN" (clickEvent)="createUser()"></app-button>
+		</div>
+	</form>
+</main>

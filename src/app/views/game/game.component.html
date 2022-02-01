@@ -1,0 +1,15 @@
+<ng-container *ngIf="this.user !== null">
+	<app-header (iconClick)="leaveGame()" name="{{ this.user.name }}"></app-header>
+	<section class="game-container">
+		<div class="high-score">High Score: {{ this.highScore }}</div>
+		<div>
+			<app-icon name="trafficlight" size="xxl" [color]="this.statusTrafficLight"></app-icon>
+		</div>
+		<div class="score">Score: {{ this.score }}</div>
+		<div class="buttons-container">
+			<app-button text="LEFT" icon="shoeprint" (click)="handlerClickBtn('LEFT')"></app-button>
+			<app-button text="RIGHT" icon="shoeprint" (click)="handlerClickBtn('RIGHT')"></app-button>
+		</div>
+		<p>{{ this._timeGreenLight }}</p>
+	</section>
+</ng-container>

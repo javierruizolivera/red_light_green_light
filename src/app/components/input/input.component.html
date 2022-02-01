@@ -1,0 +1,12 @@
+<div class="input-container">
+	<label>
+		<span>{{ label }}</span>
+		<input
+			class="input"
+			[value]="_value"
+			placeholder="{{ placeholder }}"
+			[disabled]="isDisabled"
+			[(ngModel)]="value"
+		/>
+	</label>
+</div>

@@ -1,0 +1,32 @@
+section {
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 3rem;
+	font-size: 1.5rem;
+
+	.high-score {
+		margin-bottom: 2rem;
+	}
+
+	.score {
+		margin-top: 5px;
+	}
+
+	.buttons-container {
+		width: 100%;
+		display: flex;
+		margin-top: 1rem;
+		background-color: var(--primary);
+		border-radius: 5px;
+
+		app-button {
+			width: 50%;
+
+			&:first-child {
+				border-right: 1px solid var(--secondary);
+			}
+		}
+	}
+}

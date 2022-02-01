@@ -1,0 +1,11 @@
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.2rem 1rem;
+	background-color: var(--bg-02);
+}
+
+app-icon:hover {
+	cursor: pointer;
+}

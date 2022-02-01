@@ -1,0 +1,57 @@
+.app-icon {
+	display: flex;
+}
+
+.app-icon--size-xs {
+	width: 14px;
+	height: 14px;
+}
+
+.app-icon--size-sm {
+	width: 18px;
+	height: 18px;
+}
+
+.app-icon--size-md {
+	width: 24px;
+	height: 24px;
+}
+
+.app-icon--size-lg {
+	width: 36px;
+	height: 36px;
+}
+
+.app-icon--size-xl {
+	width: 48px;
+	height: 48px;
+}
+
+.app-icon--size-xxl {
+	width: 72px;
+	height: 72 px;
+}
+
+.app-icon--color-default {
+	fill: var(--bg-01);
+}
+
+.app-icon--color-primary {
+	fill: var(--primary);
+}
+
+.app-icon--color-secondary {
+	fill: var(--secondary);
+}
+
+.app-icon--color-green {
+	fill: var(--semantic-01);
+}
+
+.app-icon--color-red {
+	fill: var(--semantic-02);
+}
+
+.app-icon--color-light {
+	fill: var(--text-01);
+}

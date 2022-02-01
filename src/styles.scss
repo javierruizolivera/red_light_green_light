@@ -1,0 +1,11 @@
+@import './assets/styles/color-variables.scss';
+
+html,
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	height: 100%;
+	background-color: var(--bg-01);
+	color: var(--text-01);
+	margin: 0;
+	padding: 0;
+}
