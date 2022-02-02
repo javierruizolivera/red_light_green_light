@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "test": "jest",
     "build": "ng build",
     "watch": "ng build --watch --configuration development"
   },
@@ -22,11 +23,15 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
+    "@angular-builders/jest": "latest",
     "@angular-devkit/build-angular": "~13.2.0",
     "@angular/cli": "~13.2.0",
     "@angular/compiler-cli": "~13.2.0",
+    "@briebug/jest-schematic": "^4.0.0",
+    "@types/jest": "latest",
     "@types/node": "^12.11.1",
     "eslint": "^8.8.0",
+    "jest": "latest",
     "prettier": "2.5.1",
     "typescript": "~4.5.2"
   }
