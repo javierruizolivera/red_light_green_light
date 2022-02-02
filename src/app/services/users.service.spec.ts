@@ -23,10 +23,10 @@ const newUser: User = {
 };
 
 const updatedUser = {
-		name: 'default1',
-		score: 5,
-		highScore: 20 
-}
+	name: 'default1',
+	score: 5,
+	highScore: 20
+};
 
 const searchName = 'default';
 
@@ -45,11 +45,6 @@ describe('UsersService', () => {
 	it('should be created', () => {
 		expect(service).toBeTruthy();
 	});
-
-	/*   private _initUserStore() {
-		const users = localStorage.getItem(STORE.USERS);
-		return users ? JSON.parse(users) : [];
-	} */
 
 	it('_initUserStore return an empty array when localStore is empty', () => {
 		const users = service['_initUserStore']();
@@ -76,21 +71,21 @@ describe('UsersService', () => {
 	});
 
 	it('addNewUser add new user', () => {
-    service.users = users;
-    service.addNewUser(newUser);
-    expect(newUser.name).toBe('name');
-    expect(service.users.length).toBe(3);
-  });
+		service.users = users;
+		service.addNewUser(newUser);
+		expect(newUser.name).toBe('name');
+		expect(service.users.length).toBe(3);
+	});
 
-  it('updateUser update user', () => {
-    service.users = users;
-    service.updateUser(updatedUser);
-    expect(service.users[0].score).toBe(5);
-  })
+	it('updateUser update user', () => {
+		service.users = users;
+		service.updateUser(updatedUser);
+		expect(service.users[0].score).toBe(5);
+	});
 
-  it ('findUser get an user', () => {
-    service.users = users;
-    const srchUser = service.findUser(searchName);
-    expect(srchUser).toBeTruthy();
-  })
+	it('findUser get an user', () => {
+		service.users = users;
+		const srchUser = service.findUser(searchName);
+		expect(srchUser).toBeTruthy();
+	});
 });
