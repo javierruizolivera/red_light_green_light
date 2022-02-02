@@ -28,6 +28,8 @@ https://javierruizolivera.github.io/light_red_light_green_app.github.io/
 * Se usado lazyload para la carga de las vistas.
 * Se ha utilizado un servicio *users.service.ts* para la comunicacion del store y la aplicación.
 * Utilización de iconos SVG de Material desing icon
+* Se han includo algunos test unitarios realizados en jest
+* Por falta de tiempo no se ha incluido traducción. En principio he usado para otros proyectos ngx-translate, por si fuera necesario.
 
 
 

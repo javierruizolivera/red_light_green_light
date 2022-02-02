@@ -23,10 +23,6 @@ export class UsersService {
 		localStorage.setItem(STORE.USERS, JSON.stringify(this.users));
 	}
 
-	public getUsersStore() {
-		return this.users;
-	}
-
 	private _findPosUser(name: string) {
 		const nameLowerCase = name.toLowerCase();
 		return this.users.findIndex((user: User) => user.name === nameLowerCase);
