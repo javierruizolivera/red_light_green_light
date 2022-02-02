@@ -8,6 +8,7 @@ import { GameComponent } from './views/game/game.component';
 import { ComponentsModule } from './components/components.module';
 import { HomeModule } from './views/home/home.module';
 import { GameModule } from './views/game/game.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
