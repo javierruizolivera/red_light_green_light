@@ -3,8 +3,9 @@
 	<h2>Create new player</h2>
 	<form [formGroup]="userForm">
 		<div class="row-control">
-			<app-input label="Name" formControlName="userName" placeholder="Please enter your name here">
+			<app-input label="Name" formControlName="userName" placeholder="Please enter your name here" (focus)="removeError()">
 			</app-input>
+			<span *ngIf="this.error" class="error">Debe introducir un nombre</span>
 		</div>
 		<div class="row-control">
 			<app-button text="JOIN" (clickEvent)="createUser()"></app-button>

@@ -54,6 +54,7 @@ export class UsersService {
 	}
 
 	public addNewUser(newUser: User) {
+		newUser.name = newUser.name.toLowerCase();
 		this.users.push(newUser);
 		this._saveUserStore();
 	}

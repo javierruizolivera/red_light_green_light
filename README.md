@@ -8,6 +8,9 @@ Rama (develop)
 
 https://github.com/javierruizolivera/red_light_green_light/tree/develop
 
+## Aplicación desplegada
+https://javierruizolivera.github.io/light_red_light_green_app.github.io/
+
 ## Proyecto
 * Proyecto generado con Angular CLI version 13.2.0.
 

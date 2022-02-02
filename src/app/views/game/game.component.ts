@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TIMESGAME } from 'src/app/constants/timesGame';
 import { TRAFFICLIGHTSTATUS } from 'src/app/constants/trafficLightStatus';
 import { User } from 'src/app/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
@@ -11,25 +12,27 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class GameComponent implements OnInit, OnDestroy {
 	private _timeRedLight: number;
-	public _timeGreenLight: number;
-	private _initTimeGreenLight: number;
 	private _currentBtn: string;
 	private _prevBtn: string;
+	private redLightInterval: ReturnType<typeof setTimeout> | undefined;
+	private greenlightInterval: ReturnType<typeof setTimeout> | undefined;
+	public timeGreenLight: number;
 	public statusTrafficLight: any;
 	public user: User | null;
 	public score: number;
 	public highScore: number;
 
 	constructor(private _router: Router, private _usersService: UsersService) {
-		this.statusTrafficLight = 'red';
+		this.statusTrafficLight = TRAFFICLIGHTSTATUS.RED;
 		this.user = null;
-		this._timeRedLight = 3000;
-		this._initTimeGreenLight = 10000;
-		this._timeGreenLight = this._initTimeGreenLight;
+		this._timeRedLight = TIMESGAME.TIME_RED_LIGHT;
+		this.timeGreenLight = TIMESGAME.INIT_TIME_GREEN_LIGHT;
 		this.score = 0;
 		this.highScore = 0;
 		this._currentBtn = '';
 		this._prevBtn = '';
+		this.redLightInterval = undefined;
+		this.greenlightInterval = undefined;
 	}
 
 	ngOnInit(): void {
@@ -39,6 +42,14 @@ export class GameComponent implements OnInit, OnDestroy {
 	ngOnDestroy(): void {
 		if (this.user) {
 			this._saveUserInfo();
+		}
+		this._clearTimeouts();
+	}
+
+	private _clearTimeouts() {
+		if (this.greenlightInterval && this.redLightInterval) {
+			clearTimeout(this.greenlightInterval);
+			clearTimeout(this.redLightInterval);
 		}
 	}
 
@@ -65,16 +76,18 @@ export class GameComponent implements OnInit, OnDestroy {
 	}
 
 	private _setTimeGreenLight() {
-		const min = -1500;
-		const max = 1500;
-		this._timeGreenLight =
-			Math.max(this._initTimeGreenLight - this.score * 100, 2000) +
-			this._getRandomInteger(min, max);
+		const min = TIMESGAME.RANDOM.MIN;
+		const max = TIMESGAME.RANDOM.MAX;
+		this.timeGreenLight =
+			Math.max(
+				TIMESGAME.INIT_TIME_GREEN_LIGHT - this.score * TIMESGAME.PENALITY,
+				TIMESGAME.MINIMUM
+			) + this._getRandomInteger(min, max);
 	}
 
 	private _setRedLight() {
 		this.statusTrafficLight = TRAFFICLIGHTSTATUS.RED;
-		setTimeout(() => {
+		this.redLightInterval = setTimeout(() => {
 			this._setGreenLight();
 		}, this._timeRedLight);
 	}
@@ -82,34 +95,35 @@ export class GameComponent implements OnInit, OnDestroy {
 	private _setGreenLight() {
 		this._setTimeGreenLight();
 		this.statusTrafficLight = TRAFFICLIGHTSTATUS.GREEN;
-		setTimeout(() => {
+		this.greenlightInterval = setTimeout(() => {
 			this._setRedLight();
-		}, this._timeGreenLight);
-	}
-
-	private _updateUserInfo() {
-		this._updateScore();
+		}, this.timeGreenLight);
 	}
 
 	private _updateScore() {
 		this._checkRedLight();
-		this._checkGreenLigth();
+		this._checkGreenLight();
 		this._checkHighScore();
 		this._saveUserInfo();
 	}
 
 	private _checkRedLight() {
-		this.score = this.statusTrafficLight === TRAFFICLIGHTSTATUS.RED ? 0 : this.score;
+		if (this.statusTrafficLight === TRAFFICLIGHTSTATUS.RED) {
+			this.score = 0;
+		}
 	}
 
 	private _repeatButton() {
 		return this._currentBtn === this._prevBtn;
 	}
 
-	private _checkGreenLigth() {
-		if (this.statusTrafficLight === TRAFFICLIGHTSTATUS.GREEN && this._repeatButton()) {
+	private _checkGreenLight() {
+		if (
+			this.statusTrafficLight === TRAFFICLIGHTSTATUS.GREEN &&
+			this._repeatButton() &&
+			this.score > 0
+		) {
 			this.score--;
-			this.score = this.score < 0 ? 0 : this.score;
 		}
 		if (this.statusTrafficLight === TRAFFICLIGHTSTATUS.GREEN && !this._repeatButton()) {
 			this.score++;
@@ -117,7 +131,9 @@ export class GameComponent implements OnInit, OnDestroy {
 	}
 
 	private _checkHighScore() {
-		this.highScore = this.score > this.highScore ? this.score : this.highScore;
+		if (this.score > this.highScore) {
+			this.highScore = this.score;
+		}
 	}
 
 	private _saveUserInfo() {
@@ -134,8 +150,8 @@ export class GameComponent implements OnInit, OnDestroy {
 
 	public handlerClickBtn(btn: string) {
 		this._prevBtn = this._currentBtn;
-		this._currentBtn = btn === 'LEFT' ? 'LEFT' : 'RIGHT';
-		this._updateUserInfo();
+		this._currentBtn = btn;
+		this._updateScore();
 	}
 
 	public leaveGame() {

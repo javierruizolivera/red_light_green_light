@@ -21,7 +21,9 @@ export class ButtonComponent implements OnInit {
   }
 
   handlerClick(){
-    this.clickEvent.emit()
+    this.clickEvent.emit();
   }
+
+  
 
 }

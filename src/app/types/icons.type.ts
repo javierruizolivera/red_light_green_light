@@ -1,6 +1,6 @@
 export type Icons = 
-|"default"
-|"mouse"
-|"shoeprint"
-|"trafficlight"
-|"logout";
+|'default'
+|'mouse'
+|'shoeprint'
+|'trafficlight'
+|'logout';

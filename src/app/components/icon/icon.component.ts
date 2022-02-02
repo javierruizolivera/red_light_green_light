@@ -59,16 +59,11 @@ export class IconComponent implements OnInit, OnChanges {
 			this.svgIconElement.nativeElement.classList.add(`app-icon--size-${this.size}`);
 			this.svgIconElement.nativeElement.classList.add(`app-icon--color-${this.color}`);
 		}
-		if (this.name && this._IconPathContains(this.name)) {
+		if (this.name && this._iconPathContains(this.name)) {
 			this.useIconElement.nativeElement.setAttribute('d', iconPath[this.name]);
 		}
 	}
-	private _IconPathContains(icon: Icons): boolean {
-		try {
-			const icn = iconPath[icon];
-			return true;
-		} catch (e) {
-			return false;
-		}
+	private _iconPathContains(icon: Icons): boolean {
+		return Boolean(iconPath[icon]);
 	}
 }
